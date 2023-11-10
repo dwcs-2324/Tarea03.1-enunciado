@@ -5,8 +5,7 @@
 
 /**
  * Summary of getConnection
- * @param mixed $file fichero INI con la configuración de la conexión. Si no se envía se leerá por defecto db_settings.ini en el mismo directorio
- * @throws \exception En caso de error leyendo el fichero
+ * Crea un objeto PDO
  * @return PDO|null un objeto PDO si ha habido éxito creando la conexión, null en caso contrario
  */
 function getConnection()
