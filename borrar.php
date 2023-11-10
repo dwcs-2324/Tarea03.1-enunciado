@@ -1,4 +1,11 @@
+
 <?php
+/**
+ * borrar_libro
+ * Elimina la tupla de books por el book_id que coincida con $cod. Además, elimina los registros de la tabla book_authors en una misma transacción
+ * @param  int $cod
+ * @return bool TRUE si el borrado fue exitoso, FALSE en caso contrario
+ */
 function borrar_libro(int $cod): bool
 {
     $exito = false;
@@ -17,8 +24,8 @@ function borrar_libro(int $cod): bool
         $stmt_del_book_authors = $conProyecto->prepare($delete_book_authors);
 
         //Ejecutamos y reemplazamos los parámetros con un array
-        $exito = $stmt->execute([$cod]);
-        $exito = $exito && $stmt_del_book_authors->execute([$cod]);
+        $exito = $stmt_del_book_authors->execute([$cod]);
+        $exito = $exito && $stmt->execute([$cod]);
         if ($exito)
             $conProyecto->commit();
         else
